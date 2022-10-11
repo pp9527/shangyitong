@@ -26,6 +26,7 @@ import java.util.Random;
 @Api(tags = "医院设置管理")
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
+@CrossOrigin
 public class HospitalSetController {
 
     @Resource
@@ -104,7 +105,7 @@ public class HospitalSetController {
 
     //6 修改医院设置
     @ApiOperation(value = "修改医院设置")
-    @PostMapping("updateHospitalSet")
+    @PutMapping("updateHospitalSet")
     public Result updateHospitalSet(@RequestBody HospitalSet hospitalSet) {
         boolean flag = hospitalSetService.updateById(hospitalSet);
         if (flag) {
@@ -119,6 +120,31 @@ public class HospitalSetController {
     @DeleteMapping("batchRemove")
     public Result batchRemoveHospitalSet(@RequestBody List<Long> idList) {
         hospitalSetService.removeByIds(idList);
+        return Result.ok();
+    }
+
+    //8 医院设置锁定和解锁
+    @ApiOperation(value = "医院设置锁定和解锁")
+    @PutMapping("lockHospitalSet/{id}/{status}")
+    public Result lockHospitalSet(@PathVariable Long id,
+                                  @PathVariable Integer status) {
+        //根据id查询医院设置信息
+        HospitalSet hospitalSet = hospitalSetService.getById(id);
+        //设置状态
+        hospitalSet.setStatus(status);
+        //调用方法
+        hospitalSetService.updateById(hospitalSet);
+        return Result.ok();
+    }
+
+    //9 发送签名秘钥
+    @ApiOperation(value = "发送签名秘钥")
+    @PutMapping("sendKey/{id}")
+    public Result lockHospitalSet(@PathVariable Long id) {
+        HospitalSet hospitalSet = hospitalSetService.getById(id);
+        String signKey = hospitalSet.getSignKey();
+        String hoscode = hospitalSet.getHoscode();
+        //TODO 发送短信
         return Result.ok();
     }
 
