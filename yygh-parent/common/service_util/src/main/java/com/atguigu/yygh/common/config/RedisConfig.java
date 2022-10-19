@@ -26,6 +26,7 @@ public class RedisConfig {
 
     /**
      * 自定义key规则
+     *
      * @return
      */
     @Bean
@@ -46,6 +47,7 @@ public class RedisConfig {
 
     /**
      * 设置RedisTemplate规则
+     *
      * @param redisConnectionFactory
      * @return
      */
@@ -75,6 +77,7 @@ public class RedisConfig {
 
     /**
      * 设置CacheManager缓存规则
+     *
      * @param factory
      * @return
      */
