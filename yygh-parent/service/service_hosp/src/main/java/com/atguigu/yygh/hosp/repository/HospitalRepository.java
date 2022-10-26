@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
  * @FileName: HospitalRepository
  */
 @Repository
-public interface HospitalRepository extends MongoRepository<Hospital,String> {
+public interface HospitalRepository extends MongoRepository<Hospital, String> {
     Hospital getHospitalByHoscode(String hoscode);
 }
