@@ -74,4 +74,6 @@ public class DictController {
         String dictName = dictService.getDictName("",value);
         return dictName;
     }
+
+
 }
