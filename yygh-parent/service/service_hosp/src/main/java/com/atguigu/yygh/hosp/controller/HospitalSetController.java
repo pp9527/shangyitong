@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Random;
 
-@Api(tags = "医院设置管理")
+@Api(tags = "医院设置接口")
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
 @CrossOrigin
