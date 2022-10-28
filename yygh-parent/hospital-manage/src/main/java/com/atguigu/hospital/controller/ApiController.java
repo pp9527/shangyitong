@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "医院管理接口")
 @Controller
 @RequestMapping
-@CrossOrigin
+//@CrossOrigin
 public class ApiController extends BaseController {
 
     @Resource
