@@ -11,10 +11,9 @@ const service = axios.create({
 // http request 拦截器
 service.interceptors.request.use(
   config => {
-    // token 先不处理，后续使用时在完善
-    // if (cookie.get('token')) {
-    //   config.headers['token'] = cookie.get('token')
-    // }
+    if (cookie.get('token')) {
+      config.headers['token'] = cookie.get('token')
+    }
     return config
   },
   err => {
@@ -23,10 +22,10 @@ service.interceptors.request.use(
 // http response 拦截器
 service.interceptors.response.use(
   response => {
-    // if (response.data.code === 208) {
-    //   eventLogin.$emit('loginDialogEvent')
-    //   return
-    // } else {
+    if (response.data.code === 208) {
+      eventLogin.$emit('loginDialogEvent')
+      return
+    } else {
       if (response.data.code !== 200) {
         Message({
           message: response.data.message,
@@ -37,8 +36,10 @@ service.interceptors.response.use(
       } else {
         return response.data
       }
-    },
-//   },
+    }
+
+  },
+  //   },
   error => {
     return Promise.reject(error.response)
   })
